@@ -1,0 +1,4 @@
+Bundle-Name: registration-web
+Bundle-SymbolicName: com.acme.registration
+Bundle-Version: 1.0.0
+Export-Package: com.acme.registration.constants
