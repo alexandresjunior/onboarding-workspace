@@ -1,0 +1,10 @@
+Bundle-Name: registration-api
+Bundle-SymbolicName: com.acme.registration.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.acme.registration.exception,\
+	com.acme.registration.model,\
+	com.acme.registration.service,\
+	com.acme.registration.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../registration-service/service.xml
