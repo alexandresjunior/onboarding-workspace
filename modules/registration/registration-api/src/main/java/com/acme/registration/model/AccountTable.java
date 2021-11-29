@@ -54,8 +54,8 @@ public class AccountTable extends BaseTable<AccountTable> {
 		"userName", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> genre = createColumn(
 		"genre", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> birthday = createColumn(
-		"birthday", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, Date> birthday = createColumn(
+		"birthday", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> password = createColumn(
 		"password_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> confirmPassword = createColumn(

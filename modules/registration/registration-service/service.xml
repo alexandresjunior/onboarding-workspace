@@ -25,7 +25,7 @@
 		<column name="emailAddress" type="String"></column>
 		<column name="userName" type="String"></column>
 		<column name="genre" type="String"></column>
-		<column name="birthday" type="String"></column>
+		<column name="birthday" type="Date"></column>
 		<column name="password" type="String"></column>
 		<column name="confirmPassword" type="String"></column>
 		<column name="homePhone" type="String"></column>
@@ -48,6 +48,9 @@
 		</finder>
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="UserName" return-type="Collection">
+			<finder-column name="userName"></finder-column>
 		</finder>
 		<finder name="GroupIdAndUserName" return-type="Collection">
 			<finder-column name="groupId"></finder-column>

@@ -42,9 +42,10 @@ import org.osgi.service.component.annotations.Component;
 )
 public class AccountServiceImpl extends AccountServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use <code>com.acme.registration.service.AccountServiceUtil</code> to access the account remote service.
 	 */
+
 }

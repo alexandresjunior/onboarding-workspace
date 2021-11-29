@@ -250,15 +250,14 @@ public interface AccountModel
 	 *
 	 * @return the birthday of this account
 	 */
-	@AutoEscape
-	public String getBirthday();
+	public Date getBirthday();
 
 	/**
 	 * Sets the birthday of this account.
 	 *
 	 * @param birthday the birthday of this account
 	 */
-	public void setBirthday(String birthday);
+	public void setBirthday(Date birthday);
 
 	/**
 	 * Returns the password of this account.

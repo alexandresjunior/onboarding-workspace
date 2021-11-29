@@ -14,6 +14,7 @@
 
 package com.acme.registration.service.impl;
 
+import com.acme.registration.model.Account;
 import com.acme.registration.service.base.AccountLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
@@ -39,9 +40,13 @@ import org.osgi.service.component.annotations.Component;
 )
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Use <code>com.acme.registration.service.AccountLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.acme.registration.service.AccountLocalServiceUtil</code>.
 	 */
+	public Account fetchAccountByUserName(String userName) {
+		return accountPersistence.fetchByUserName_First(userName, null);
+	}
+
 }

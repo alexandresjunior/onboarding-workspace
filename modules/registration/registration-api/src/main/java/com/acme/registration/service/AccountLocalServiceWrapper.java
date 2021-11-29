@@ -222,6 +222,18 @@ public class AccountLocalServiceWrapper
 	}
 
 	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>AccountLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>AccountLocalServiceUtil</code>.
+	 */
+	@Override
+	public com.acme.registration.model.Account fetchAccountByUserName(
+		String userName) {
+
+		return _accountLocalService.fetchAccountByUserName(userName);
+	}
+
+	/**
 	 * Returns the account with the primary key.
 	 *
 	 * @param accountId the primary key of the account

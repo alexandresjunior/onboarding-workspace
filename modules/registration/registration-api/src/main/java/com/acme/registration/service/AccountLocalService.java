@@ -201,6 +201,14 @@ public interface AccountLocalService
 	public Account fetchAccount(long accountId);
 
 	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>AccountLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>AccountLocalServiceUtil</code>.
+	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Account fetchAccountByUserName(String userName);
+
+	/**
 	 * Returns the account with the primary key.
 	 *
 	 * @param accountId the primary key of the account
