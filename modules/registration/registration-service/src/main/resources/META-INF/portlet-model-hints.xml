@@ -13,7 +13,7 @@
 		<field name="emailAddress" type="String" />
 		<field name="userName" type="String" />
 		<field name="genre" type="String" />
-		<field name="birthday" type="String" />
+		<field name="birthday" type="Date" />
 		<field name="password" type="String" />
 		<field name="confirmPassword" type="String" />
 		<field name="homePhone" type="String" />

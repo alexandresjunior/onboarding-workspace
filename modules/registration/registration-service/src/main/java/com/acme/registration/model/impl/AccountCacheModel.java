@@ -174,11 +174,11 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setGenre(genre);
 		}
 
-		if (birthday == null) {
-			accountImpl.setBirthday("");
+		if (birthday == Long.MIN_VALUE) {
+			accountImpl.setBirthday(null);
 		}
 		else {
-			accountImpl.setBirthday(birthday);
+			accountImpl.setBirthday(new Date(birthday));
 		}
 
 		if (password == null) {
@@ -281,7 +281,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		emailAddress = objectInput.readUTF();
 		userName = objectInput.readUTF();
 		genre = objectInput.readUTF();
-		birthday = objectInput.readUTF();
+		birthday = objectInput.readLong();
 		password = objectInput.readUTF();
 		confirmPassword = objectInput.readUTF();
 		homePhone = objectInput.readUTF();
@@ -344,12 +344,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(genre);
 		}
 
-		if (birthday == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(birthday);
-		}
+		objectOutput.writeLong(birthday);
 
 		if (password == null) {
 			objectOutput.writeUTF("");
@@ -442,7 +437,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	public String emailAddress;
 	public String userName;
 	public String genre;
-	public String birthday;
+	public long birthday;
 	public String password;
 	public String confirmPassword;
 	public String homePhone;

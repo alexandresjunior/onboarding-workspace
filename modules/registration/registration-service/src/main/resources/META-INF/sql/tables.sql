@@ -10,7 +10,7 @@ create table AMF_Account (
 	emailAddress VARCHAR(75) null,
 	userName VARCHAR(75) null,
 	genre VARCHAR(75) null,
-	birthday VARCHAR(75) null,
+	birthday DATE null,
 	password_ VARCHAR(75) null,
 	confirmPassword VARCHAR(75) null,
 	homePhone VARCHAR(75) null,

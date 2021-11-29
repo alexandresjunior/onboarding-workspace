@@ -138,7 +138,7 @@ public class AccountWrapper
 			setGenre(genre);
 		}
 
-		String birthday = (String)attributes.get("birthday");
+		Date birthday = (Date)attributes.get("birthday");
 
 		if (birthday != null) {
 			setBirthday(birthday);
@@ -268,7 +268,7 @@ public class AccountWrapper
 	 * @return the birthday of this account
 	 */
 	@Override
-	public String getBirthday() {
+	public Date getBirthday() {
 		return model.getBirthday();
 	}
 
@@ -543,7 +543,7 @@ public class AccountWrapper
 	 * @param birthday the birthday of this account
 	 */
 	@Override
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		model.setBirthday(birthday);
 	}
 

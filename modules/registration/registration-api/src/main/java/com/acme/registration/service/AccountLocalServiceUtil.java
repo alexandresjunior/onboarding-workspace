@@ -209,6 +209,15 @@ public class AccountLocalServiceUtil {
 	}
 
 	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>AccountLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>AccountLocalServiceUtil</code>.
+	 */
+	public static Account fetchAccountByUserName(String userName) {
+		return getService().fetchAccountByUserName(userName);
+	}
+
+	/**
 	 * Returns the account with the primary key.
 	 *
 	 * @param accountId the primary key of the account

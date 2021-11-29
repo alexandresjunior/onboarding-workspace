@@ -198,11 +198,11 @@ public class AccountSoap implements Serializable {
 		_genre = genre;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return _birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		_birthday = birthday;
 	}
 
@@ -317,7 +317,7 @@ public class AccountSoap implements Serializable {
 	private String _emailAddress;
 	private String _userName;
 	private String _genre;
-	private String _birthday;
+	private Date _birthday;
 	private String _password;
 	private String _confirmPassword;
 	private String _homePhone;

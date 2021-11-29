@@ -25,7 +25,7 @@ package com.acme.registration.model.impl;
  */
 public class AccountImpl extends AccountBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a account model instance should use the {@link com.acme.registration.model.Account} interface instead.
