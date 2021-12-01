@@ -1,5 +1,5 @@
 Bundle-Name: amf-registration-api
-Bundle-SymbolicName: com.acme.registration.api
+Bundle-SymbolicName: com.acme.registration.web
 Bundle-Version: 1.0.0
 Export-Package:\
 	com.acme.registration.exception,\
