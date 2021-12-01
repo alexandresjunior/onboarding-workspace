@@ -1,5 +1,5 @@
 dependencies {
-	compile project(":modules:amf-registration:amf-registration-api")
+	compile project(":modules:amf-registration:amf-registration-common:amf-registration-api")
 
 	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
 }
