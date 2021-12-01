@@ -7,7 +7,7 @@
 		<suppress checks="ExceptionVariableNameCheck" files=".*"/>
 
 		<!-- Suppress Pattern constants name check -->
-		<suppress checks="ConstantNameCheck" files="modules/registration/*" />
+		<suppress checks="ConstantNameCheck" files="modules/amf-registration/*" />
 	</checkstyle>
 	<source-check>
 		<suppress checks="CopyrightCheck" files=".*"/>
