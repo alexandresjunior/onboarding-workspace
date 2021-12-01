@@ -1,4 +1,4 @@
-Bundle-Name: registration-api
+Bundle-Name: amf-registration-api
 Bundle-SymbolicName: com.acme.registration.api
 Bundle-Version: 1.0.0
 Export-Package:\
@@ -7,4 +7,4 @@ Export-Package:\
 	com.acme.registration.service,\
 	com.acme.registration.service.persistence
 -check: EXPORTS
--includeresource: META-INF/service.xml=../registration-service/service.xml
+-includeresource: META-INF/service.xml=../amf-registration-service/service.xml
