@@ -1,7 +1,7 @@
 <%@ page import="com.acme.registration.constants.RegistrationPortletKeys" %>
 <%@ page import="javax.portlet.PortletSession" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ include file="./init.jsp" %>
+<%@ include file="init.jsp" %>
 
 <liferay-ui:error key="invalidFirstName" message="error.field-first-name" focusField="firstName"/>
 <liferay-ui:error key="invalidLastName" message="error.field-last-name"/>
