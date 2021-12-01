@@ -1,0 +1,4 @@
+Bundle-Name: amf-registration-web-rest
+Bundle-SymbolicName: com.acme.registration.web.rest
+Bundle-Version: 1.0.0
+Export-Package: com.acme.registration.web
