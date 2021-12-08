@@ -30,11 +30,12 @@ modules
 * Run `blade gw buildService` in `/amf-registration-service` directory to generate models and classes;
 * Implement logic in `*LocalServiceImpl` and `*ServiceImpl` classes;
 * Define backend validation and exceptions, if needed;
-* Run `npx create-react-app amf-registration-js-web` to create React Js Web module;
-* Also, run `yo liferay-js:adapt` to adapt it to run on Liferay DXP;
-* 
+* Create `*-web-rest` module to expose endpoints which will be called by FE layer;
+* Run `npm install -g yo generator-liferay-js` to install the Liferay JS Generator;
+* Then, run `yo liferay-js` to generate a React based portlet bundle project.
 
 ## References
 * [Introduction to Portlets](https://help.liferay.com/hc/en-us/articles/360018159431-Introduction-to-Portlets)
 * [Introduction to Service Builder](https://help.liferay.com/hc/en-us/articles/360017881932-Introduction-to-Service-Builder-)
 * [Using the AlloyUI Validator Tag](https://help.liferay.com/hc/en-us/articles/360018179851-Using-the-AlloyUI-Validator-Tag#available-validation-rules)
+* [Developing a React Application](https://help.liferay.com/hc/en-us/articles/360029028051-Developing-a-React-Application)
