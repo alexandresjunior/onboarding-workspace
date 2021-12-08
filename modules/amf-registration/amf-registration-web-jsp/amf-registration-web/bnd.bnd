@@ -1,4 +1,3 @@
-Bundle-Name: amf-registration-web
-Bundle-SymbolicName: com.acme.registration.web
+Bundle-Name: amf-registration-web-jsp
+Bundle-SymbolicName: com.acme.registration.web.jsp
 Bundle-Version: 1.0.0
-Export-Package: com.acme.registration.constants
