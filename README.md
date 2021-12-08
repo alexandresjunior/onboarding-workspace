@@ -30,7 +30,9 @@ modules
 * Run `blade gw buildService` in `/amf-registration-service` directory to generate models and classes;
 * Implement logic in `*LocalServiceImpl` and `*ServiceImpl` classes;
 * Define backend validation and exceptions, if needed;
-* ...
+* Run `npx create-react-app amf-registration-js-web` to create React Js Web module;
+* Also, run `yo liferay-js:adapt` to adapt it to run on Liferay DXP;
+* 
 
 ## References
 * [Introduction to Portlets](https://help.liferay.com/hc/en-us/articles/360018159431-Introduction-to-Portlets)
