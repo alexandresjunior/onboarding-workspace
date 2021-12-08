@@ -3,13 +3,16 @@ package com.acme.registration.web;
 import com.acme.registration.model.Account;
 import com.acme.registration.service.AccountLocalService;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONObject;
 
 import java.util.Collections;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,10 +37,37 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 )
 public class AcmeAccountRegistrationApplication extends Application {
 
+	@GET
+	@Path("/account-exists")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response checkAccountExists(String body) throws PortalException {
+		Account account = _jSONFactory.looseDeserialize(body, Account.class);
+
+		account = _accountLocalService.getAccount(account.getAccountId());
+
+		boolean accountExists = Boolean.TRUE;
+
+		if (account == null) {
+			accountExists = Boolean.FALSE;
+		}
+
+		JSONObject response = _jSONFactory.createJSONObject();
+
+		response.put("accountExists", accountExists);
+
+		return Response.ok(
+			response
+		).build();
+	}
+
+	public Set<Object> getSingletons() {
+		return Collections.singleton(this);
+	}
+
 	@Path("/add-account")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addAccount(String body) {
+	public Response registerAccount(String body) {
 		Account account = _jSONFactory.looseDeserialize(body, Account.class);
 
 		account = _accountLocalService.addAccount(account);
@@ -45,10 +75,6 @@ public class AcmeAccountRegistrationApplication extends Application {
 		return Response.ok(
 			_jSONFactory.looseSerialize(account)
 		).build();
-	}
-
-	public Set<Object> getSingletons() {
-		return Collections.singleton(this);
 	}
 
 	@Reference
