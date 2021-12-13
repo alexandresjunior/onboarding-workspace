@@ -3,20 +3,23 @@
 	"version": "1.0.0",
 	"description": "amf-registration-web-js",
 	"devDependencies": {
-		"liferay-npm-bundler": "^2.28.0",
-		"liferay-npm-build-support": "^2.28.0",
-		"copy-webpack-plugin": "4.6.0",
-		"webpack": "4.29.6",
-		"webpack-cli": "3.3.0",
-		"webpack-dev-server": "3.2.1",
 		"@babel/cli": "^7.7.5",
 		"@babel/core": "^7.7.5",
 		"@babel/preset-env": "^7.7.6",
-		"@babel/preset-react": "^7.7.4"
+		"@babel/preset-react": "^7.7.4",
+		"copy-webpack-plugin": "4.6.0",
+		"liferay-npm-build-support": "^2.28.0",
+		"liferay-npm-bundler": "^2.28.0",
+		"webpack": "4.29.6",
+		"webpack-cli": "3.3.0",
+		"webpack-dev-server": "3.2.1"
 	},
 	"dependencies": {
+		"common-react-components": "0.0.74",
 		"react": "16.8.6",
-		"react-dom": "16.8.6"
+		"react-dom": "16.8.6",
+		"axios": "^0.23.0",
+		"regenerator-runtime": "^0.13.9"
 	},
 	"scripts": {
 		"build": "babel --source-maps -d build src && npm run copy-assets && liferay-npm-bundler",
