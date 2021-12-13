@@ -1,6 +1,6 @@
 import React from "react";
 
-function PhoneInfo() {
+function PhoneInfo({errors, validateFields}) {
     return (
         <>
             <div className="sheet-header">
@@ -14,6 +14,9 @@ function PhoneInfo() {
                             className="form-control"
                             id="homePhone"
                             type="number"
+                            error={!errors.homePhoneNumber.isValid}
+                            helperText={errors.homePhoneNumber.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                     <div className="form-group-item">
@@ -22,6 +25,9 @@ function PhoneInfo() {
                             className="form-control"
                             id="mobilePhone"
                             type="number"
+                            error={!errors.mobilePhoneNumber.isValid}
+                            helperText={errors.mobilePhoneNumber.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>

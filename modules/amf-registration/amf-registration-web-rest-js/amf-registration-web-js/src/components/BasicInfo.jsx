@@ -1,6 +1,6 @@
 import React from "react";
 
-function BasicInfo() {
+function BasicInfo({ errors, validateFields }) {
     return (
         <>
             <div className="sheet-header">
@@ -15,6 +15,9 @@ function BasicInfo() {
                             id="firstName"
                             type="text"
                             required={true}
+                            error={!errors.firstName.isValid}
+                            helperText={errors.firstName.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                     <div className="form-group-item">
@@ -24,6 +27,9 @@ function BasicInfo() {
                             id="lastName"
                             type="text"
                             required={true}
+                            error={!errors.lastName.isValid}
+                            helperText={errors.lastName.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>
@@ -36,6 +42,9 @@ function BasicInfo() {
                             id="email"
                             type="email"
                             required={true}
+                            error={!errors.email.isValid}
+                            helperText={errors.email.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                     <div className="form-group-item">
@@ -45,6 +54,9 @@ function BasicInfo() {
                             id="username"
                             type="text"
                             required={true}
+                            error={!errors.userName.isValid}
+                            helperText={errors.userName.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>
@@ -63,6 +75,9 @@ function BasicInfo() {
                             id="birthday"
                             type="date"
                             required={true}
+                            error={!errors.birthday.isValid}
+                            helperText={errors.birthday.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>
@@ -74,6 +89,9 @@ function BasicInfo() {
                             id="password"
                             type="password"
                             required={true}
+                            error={!errors.password.isValid}
+                            helperText={errors.password.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                     <div className="form-group-item">
@@ -83,6 +101,9 @@ function BasicInfo() {
                             id="confirmPassword"
                             type="password"
                             required={true}
+                            error={!errors.confirmPassword.isValid}
+                            helperText={errors.confirmPassword.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>

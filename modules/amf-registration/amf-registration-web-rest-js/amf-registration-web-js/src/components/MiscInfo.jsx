@@ -1,6 +1,6 @@
 import React from "react";
 
-function MiscInfo() {
+function MiscInfo({errors, validateFields}) {
     return (
         <>
             <div className="sheet-header">
@@ -31,6 +31,9 @@ function MiscInfo() {
                             id="answer"
                             type="text"
                             required={true}
+                            error={!errors.answer.isValid}
+                            helperText={errors.answer.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>

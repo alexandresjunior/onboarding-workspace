@@ -1,6 +1,6 @@
 import React from "react";
 
-function BillingAddressInfo() {
+function BillingAddressInfo({errors, validateFields}) {
     return (
         <>
             <div className="sheet-header">
@@ -15,6 +15,9 @@ function BillingAddressInfo() {
                             id="address1"
                             type="text"
                             required={true}
+                            error={!errors.billingAddress.isValid}
+                            helperText={errors.billingAddress.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                     <div className="form-group-item">
@@ -23,6 +26,9 @@ function BillingAddressInfo() {
                             className="form-control"
                             id="address2"
                             type="text"
+                            error={!errors.billingAddress.isValid}
+                            helperText={errors.billingAddress.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>
@@ -35,6 +41,9 @@ function BillingAddressInfo() {
                             id="city"
                             type="text"
                             required={true}
+                            error={!errors.city.isValid}
+                            helperText={errors.city.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                     <div className="form-group-item">
@@ -53,6 +62,9 @@ function BillingAddressInfo() {
                             id="zipCode"
                             type="text"
                             required={true}
+                            error={!errors.zipCode.isValid}
+                            helperText={errors.zipCode.text}
+                            onBlur={ validateFields }
                         />
                     </div>
                 </div>
