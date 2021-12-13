@@ -7,6 +7,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.Set;
 
@@ -21,6 +22,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.util.GetterUtil;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
@@ -36,6 +40,26 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	service = Application.class
 )
 public class AcmeAccountRegistrationApplication extends Application {
+
+	@GET
+	@Path("/sample")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getSampleResponse() throws PortalException {
+		JSONObject response = _jSONFactory.createJSONObject();
+
+		Principal principal = _request.getUserPrincipal();
+
+		long userId = GetterUtil.getLong(principal.getName());
+
+		User user = _userLocalService.getUser(userId);
+
+		response.put("email", user.getEmailAddress());
+
+		return Response.ok(
+		).entity(
+			response.toString()
+		).build();
+	}
 
 	@GET
 	@Path("/account-exists")
@@ -76,6 +100,9 @@ public class AcmeAccountRegistrationApplication extends Application {
 			_jSONFactory.looseSerialize(account)
 		).build();
 	}
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 	@Reference
 	private AccountLocalService _accountLocalService;
