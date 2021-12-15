@@ -1,0 +1,1 @@
+create index IX_E7BF46C5 on AMF_Event (userName[$COLUMN_LENGTH:75$]);

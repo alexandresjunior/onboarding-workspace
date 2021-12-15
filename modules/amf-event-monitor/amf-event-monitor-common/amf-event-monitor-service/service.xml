@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="amf.event.monitor">
+	<namespace>AMF</namespace>
+	<entity local-service="true" name="Event" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="eventId" primary="true" type="long"></column>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<!-- Other fields -->
+
+		<column name="eventType" type="String"></column>
+		<column name="dateTime" type="String"></column>
+		<column name="ipAddress" type="String"></column>
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="dateTime"></order-column>
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="UserName" return-type="Event">
+			<finder-column name="userName"></finder-column>
+		</finder>
+
+	</entity>
+</service-builder>
