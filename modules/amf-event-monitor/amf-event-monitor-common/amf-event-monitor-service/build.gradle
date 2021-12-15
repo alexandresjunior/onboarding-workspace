@@ -8,4 +8,4 @@ buildService {
 	apiDir = "../amf-event-monitor-api/src/main/java"
 }
 
-group = "amf.event.monitor"
+group = "com.acme.event.monitor"
