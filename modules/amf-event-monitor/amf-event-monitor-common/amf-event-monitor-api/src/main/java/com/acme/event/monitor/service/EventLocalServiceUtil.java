@@ -60,6 +60,15 @@ public class EventLocalServiceUtil {
 		return getService().addEvent(event);
 	}
 
+	public static Event addEvent(
+			long groupId, String eventType, String ipAddress,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws PortalException {
+
+		return getService().addEvent(
+			groupId, eventType, ipAddress, serviceContext);
+	}
+
 	/**
 	 * Creates a new event with the primary key. Does not add the event to the database.
 	 *
@@ -238,6 +247,10 @@ public class EventLocalServiceUtil {
 	 */
 	public static List<Event> getEvents(int start, int end) {
 		return getService().getEvents(start, end);
+	}
+
+	public static List<Event> getEventsByType(String eventType) {
+		return getService().getEventsByType(eventType);
 	}
 
 	/**

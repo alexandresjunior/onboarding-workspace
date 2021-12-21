@@ -47,6 +47,16 @@ public class EventLocalServiceWrapper
 		return _eventLocalService.addEvent(event);
 	}
 
+	@Override
+	public com.acme.event.monitor.model.Event addEvent(
+			long groupId, String eventType, String ipAddress,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _eventLocalService.addEvent(
+			groupId, eventType, ipAddress, serviceContext);
+	}
+
 	/**
 	 * Creates a new event with the primary key. Does not add the event to the database.
 	 *
@@ -258,6 +268,13 @@ public class EventLocalServiceWrapper
 		int start, int end) {
 
 		return _eventLocalService.getEvents(start, end);
+	}
+
+	@Override
+	public java.util.List<com.acme.event.monitor.model.Event> getEventsByType(
+		String eventType) {
+
+		return _eventLocalService.getEventsByType(eventType);
 	}
 
 	/**
