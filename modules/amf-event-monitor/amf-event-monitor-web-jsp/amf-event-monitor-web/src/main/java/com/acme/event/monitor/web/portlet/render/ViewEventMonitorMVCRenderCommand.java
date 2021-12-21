@@ -1,7 +1,7 @@
 package com.acme.event.monitor.web.portlet.render;
 
 import com.acme.event.monitor.service.EventLocalService;
-import com.acme.event.monitor.web.constants.EventMonitorPortletKeys;
+import com.acme.event.monitor.constants.EventMonitorPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
