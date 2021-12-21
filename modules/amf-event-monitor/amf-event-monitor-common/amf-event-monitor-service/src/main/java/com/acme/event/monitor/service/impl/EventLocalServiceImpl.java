@@ -18,7 +18,6 @@ import com.acme.event.monitor.model.Event;
 import com.acme.event.monitor.service.base.EventLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactory;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -28,12 +27,14 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Brian Wing Shun Chan
@@ -47,13 +48,13 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	public Event addEvent(
 			long groupId, String eventType, String ipAddress,
 			ServiceContext serviceContext)
-			throws PortalException {
+		throws PortalException {
 
 		Group group = groupLocalService.getGroup(groupId);
 		User user = userLocalService.getUser(serviceContext.getUserId());
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
+			"yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 
 		long eventId = counterLocalService.increment(Event.class.getName());
@@ -72,15 +73,15 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		event.setIpAddress(ipAddress);
 
 		resourceLocalService.addResources(
-				user.getCompanyId(), groupId, user.getUserId(), Event.class.getName(),
-				event.getEventId(), false, true, true);
+			user.getCompanyId(), groupId, user.getUserId(),
+			Event.class.getName(), event.getEventId(), false, true, true);
 
 		return super.addEvent(event);
 	}
 
 	public List<Event> getEventsByType(String eventType) {
 		DynamicQuery dynamicQuery = dynamicQueryFactoryUtil.forClass(
-				Event.class, getClassLoader());
+			Event.class, getClassLoader());
 
 		Property eventTypeProperty = propertyFactoryUtil.forName("eventType");
 
@@ -93,9 +94,9 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	protected DynamicQueryFactory dynamicQueryFactoryUtil;
 
 	@Reference
-	protected PropertyFactory propertyFactoryUtil;
+	protected GroupLocalService groupLocalService;
 
 	@Reference
-	protected GroupLocalService groupLocalService;
+	protected PropertyFactory propertyFactoryUtil;
 
 }
