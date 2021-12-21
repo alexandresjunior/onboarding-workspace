@@ -30,6 +30,16 @@ public class EventServiceWrapper
 		_eventService = eventService;
 	}
 
+	@Override
+	public com.acme.event.monitor.model.Event addEvent(
+			long groupId, String eventType, String ipAddress,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _eventService.addEvent(
+			groupId, eventType, ipAddress, serviceContext);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

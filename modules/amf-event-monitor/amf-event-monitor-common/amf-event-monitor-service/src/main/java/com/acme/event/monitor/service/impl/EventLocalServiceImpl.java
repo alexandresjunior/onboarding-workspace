@@ -14,11 +14,26 @@
 
 package com.acme.event.monitor.service.impl;
 
+import com.acme.event.monitor.model.Event;
 import com.acme.event.monitor.service.base.EventLocalServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactory;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactory;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -28,4 +43,59 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
+
+	public Event addEvent(
+			long groupId, String eventType, String ipAddress,
+			ServiceContext serviceContext)
+			throws PortalException {
+
+		Group group = groupLocalService.getGroup(groupId);
+		User user = userLocalService.getUser(serviceContext.getUserId());
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+
+		long eventId = counterLocalService.increment(Event.class.getName());
+
+		Event event = createEvent(eventId);
+
+		event.setGroupId(groupId);
+		event.setCompanyId(group.getCompanyId());
+		event.setUserId(user.getUserId());
+		event.setUserName(user.getScreenName());
+		event.setCreateDate(serviceContext.getCreateDate(new Date()));
+		event.setModifiedDate(serviceContext.getModifiedDate(new Date()));
+
+		event.setEventType(eventType);
+		event.setDateTime(simpleDateFormat.format(date));
+		event.setIpAddress(ipAddress);
+
+		resourceLocalService.addResources(
+				user.getCompanyId(), groupId, user.getUserId(), Event.class.getName(),
+				event.getEventId(), false, true, true);
+
+		return super.addEvent(event);
+	}
+
+	public List<Event> getEventsByType(String eventType) {
+		DynamicQuery dynamicQuery = dynamicQueryFactoryUtil.forClass(
+				Event.class, getClassLoader());
+
+		Property eventTypeProperty = propertyFactoryUtil.forName("eventType");
+
+		dynamicQuery.add(eventTypeProperty.eq(eventType));
+
+		return dynamicQuery(dynamicQuery);
+	}
+
+	@Reference
+	protected DynamicQueryFactory dynamicQueryFactoryUtil;
+
+	@Reference
+	protected PropertyFactory propertyFactoryUtil;
+
+	@Reference
+	protected GroupLocalService groupLocalService;
+
 }

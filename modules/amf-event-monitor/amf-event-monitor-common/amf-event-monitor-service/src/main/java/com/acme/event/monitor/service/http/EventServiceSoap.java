@@ -14,9 +14,16 @@
 
 package com.acme.event.monitor.service.http;
 
+import com.acme.event.monitor.service.EventServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * <code>com.acme.event.monitor.service.EventServiceUtil</code> service
+ * <code>EventServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -56,4 +63,27 @@ package com.acme.event.monitor.service.http;
  */
 @Deprecated
 public class EventServiceSoap {
+
+	public static com.acme.event.monitor.model.EventSoap addEvent(
+			long groupId, String eventType, String ipAddress,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			com.acme.event.monitor.model.Event returnValue =
+				EventServiceUtil.addEvent(
+					groupId, eventType, ipAddress, serviceContext);
+
+			return com.acme.event.monitor.model.EventSoap.toSoapModel(
+				returnValue);
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+
+			throw new RemoteException(exception.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(EventServiceSoap.class);
+
 }

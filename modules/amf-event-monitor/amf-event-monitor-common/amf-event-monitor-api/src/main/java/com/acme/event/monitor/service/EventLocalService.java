@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -75,6 +76,11 @@ public interface EventLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Event addEvent(Event event);
+
+	public Event addEvent(
+			long groupId, String eventType, String ipAddress,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	 * Creates a new event with the primary key. Does not add the event to the database.
@@ -226,6 +232,9 @@ public interface EventLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Event> getEvents(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Event> getEventsByType(String eventType);
 
 	/**
 	 * Returns the number of events.
