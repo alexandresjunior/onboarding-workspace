@@ -1,6 +1,6 @@
 package com.acme.event.monitor.web.portlet;
 
-import com.acme.event.monitor.web.constants.EventMonitorPortletKeys;
+import com.acme.event.monitor.constants.EventMonitorPortletKeys;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 

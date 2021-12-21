@@ -1,4 +1,4 @@
-package com.acme.event.monitor.web.constants;
+package com.acme.event.monitor.constants;
 
 /**
  * @author Alexandre de Souza Jr.
