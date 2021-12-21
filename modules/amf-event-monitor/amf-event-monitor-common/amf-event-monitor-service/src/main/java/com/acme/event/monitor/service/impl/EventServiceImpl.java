@@ -18,9 +18,9 @@ import com.acme.event.monitor.model.Event;
 import com.acme.event.monitor.service.base.EventServiceBaseImpl;
 
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -38,9 +38,10 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	public Event addEvent(
 			long groupId, String eventType, String ipAddress,
 			ServiceContext serviceContext)
-			throws PortalException {
+		throws PortalException {
 
-		return eventLocalService.addEvent(groupId, eventType, ipAddress, serviceContext);
+		return eventLocalService.addEvent(
+			groupId, eventType, ipAddress, serviceContext);
 	}
 
 }
