@@ -36,7 +36,7 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_BASE + "=/account-registration",
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_BASE + "=/accounts",
 		JaxrsWhiteboardConstants.JAX_RS_NAME + "=AcmeAccountRegistration.Rest"
 	},
 	service = Application.class
