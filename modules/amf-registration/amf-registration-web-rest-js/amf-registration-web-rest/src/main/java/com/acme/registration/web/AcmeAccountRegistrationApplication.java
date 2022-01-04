@@ -91,7 +91,7 @@ public class AcmeAccountRegistrationApplication extends Application {
 	@Path("/add")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response registerAccount(String body) {
+	public Response addAccount(String body) {
 		Account account = _jSONFactory.looseDeserialize(body, Account.class);
 
 		account = _accountLocalService.addAccount(account);
