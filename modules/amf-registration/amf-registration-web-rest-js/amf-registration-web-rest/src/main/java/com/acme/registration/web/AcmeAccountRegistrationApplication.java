@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -34,6 +35,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
@@ -97,9 +99,14 @@ public class AcmeAccountRegistrationApplication extends Application {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addAccount(String body) {
-		Account account = _jSONFactory.looseDeserialize(body, Account.class);
+		AccountDTO accountDTO = _jSONFactory.looseDeserialize(body, AccountDTO.class);
 
-		account = _accountLocalService.addAccount(account);
+		long accountId = _counterLocalService.increment(
+				Account.class.getName());
+
+		Account account = _accountLocalService.createAccount(accountId);
+
+		account = _accountLocalService.addAccount(accountDTO.toAccount(account));
 
 		return Response.ok(
 			_jSONFactory.looseSerialize(account)
@@ -186,6 +193,9 @@ public class AcmeAccountRegistrationApplication extends Application {
 
 	@Context
 	private HttpServletRequest _request;
+
+	@Reference
+	private CounterLocalService _counterLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 			AcmeAccountRegistrationApplication.class);

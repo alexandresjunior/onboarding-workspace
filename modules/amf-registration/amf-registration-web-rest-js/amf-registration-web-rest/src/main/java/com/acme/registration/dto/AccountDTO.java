@@ -2,6 +2,13 @@ package com.acme.registration.dto;
 
 import com.acme.registration.model.Account;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
+
 public class AccountDTO {
     private long accountId;
     private long groupId;
@@ -74,6 +81,35 @@ public class AccountDTO {
                 account.getHomePhone(), account.getMobilePhone(), account.getAddress1(),
                 account.getAddress2(), account.getCity(),account.getState(),account.getZipCode(),
                 account.getSecurityQuestion(), account.getAnswer(),account.getTermsOfUse());
+    }
+
+    public Account toAccount(Account account){
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        Date createDate = null;
+
+        try {
+            createDate = format.parse(this.createDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        account.setCompanyId(this.companyId);
+        account.setGroupId(this.groupId);
+        account.setCreateDate(createDate);
+        account.setMobilePhone(this.modifiedDate);
+        account.setHomePhone(this.homePhone);
+        account.setAddress1(this.address1);
+        account.setAddress2(this.address2);
+        account.setGenre(this.genre);
+        account.setCity(this.city);
+        account.setState(this.state);
+        account.setZipCode(this.zipCode);
+        account.setSecurityQuestion(this.securityQuestion);
+        account.setAnswer(this.answer);
+        account.setTermsOfUse(this.termsOfUse);
+
+        return account;
     }
 
     public long getAccountId() {
