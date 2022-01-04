@@ -3,8 +3,13 @@ package com.acme.registration.web;
 import com.acme.registration.model.Account;
 import com.acme.registration.service.AccountLocalService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
 import java.security.Principal;
@@ -13,10 +18,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -84,10 +86,6 @@ public class AcmeAccountRegistrationApplication extends Application {
 		).build();
 	}
 
-	public Set<Object> getSingletons() {
-		return Collections.singleton(this);
-	}
-
 	@Path("/add")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -99,6 +97,48 @@ public class AcmeAccountRegistrationApplication extends Application {
 		return Response.ok(
 			_jSONFactory.looseSerialize(account)
 		).build();
+	}
+
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAccount(
+			@PathParam("id") long accountId){
+		try{
+			Account account = _accountLocalService.getAccount(accountId);
+
+			if(account != null){
+				String json = _OBJECT_MAPPER.writeValueAsString(
+						JSONFactoryUtil.looseSerialize(account));
+
+				return Response.ok(
+						json, MediaType.APPLICATION_JSON
+				).build();
+			}
+			else{
+				return Response.status(
+						Response.Status.NOT_FOUND
+				).build();
+			}
+		} catch (PortalException | JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return Response.status(
+				Response.Status.INTERNAL_SERVER_ERROR
+		).build();
+	}
+
+	private static final ObjectMapper _OBJECT_MAPPER = new ObjectMapper() {
+		{
+			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+			disable(SerializationFeature.INDENT_OUTPUT);
+
+		}
+	};
+
+	public Set<Object> getSingletons() {
+		return Collections.singleton(this);
 	}
 
 	@Reference
