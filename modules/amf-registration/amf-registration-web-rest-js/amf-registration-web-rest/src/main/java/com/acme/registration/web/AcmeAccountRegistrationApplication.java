@@ -1,8 +1,11 @@
 package com.acme.registration.web;
 
+import com.acme.registration.dto.AccountDTO;
 import com.acme.registration.model.Account;
 import com.acme.registration.service.AccountLocalService;
 
+import com.acme.registration.service.AccountLocalServiceUtil;
+import com.acme.registration.service.AccountServiceUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +16,9 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -126,6 +131,33 @@ public class AcmeAccountRegistrationApplication extends Application {
 
 		return Response.status(
 				Response.Status.INTERNAL_SERVER_ERROR
+		).build();
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllAccounts(){
+		List<AccountDTO> accountsDTO = new ArrayList<>();
+
+		List<Account> accounts = AccountLocalServiceUtil.getAccounts(-1,-1);
+
+		for (Account account : accounts) {
+			accountsDTO.add(AccountDTO.fromAccount(account));
+		}
+
+		try {
+			String json = _OBJECT_MAPPER.writeValueAsString(accountsDTO);
+
+			return Response.ok(
+					json, MediaType.APPLICATION_JSON
+			).build();
+		}
+		catch (JsonProcessingException jPE) {
+			jPE.printStackTrace();
+		}
+
+		return Response.status(
+				Response.Status.NO_CONTENT
 		).build();
 	}
 
