@@ -88,7 +88,7 @@ public class AcmeAccountRegistrationApplication extends Application {
 		return Collections.singleton(this);
 	}
 
-	@Path("/add-account")
+	@Path("/add")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response registerAccount(String body) {
