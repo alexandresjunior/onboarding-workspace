@@ -29,6 +29,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -125,8 +127,8 @@ public class AcmeAccountRegistrationApplication extends Application {
 						Response.Status.NOT_FOUND
 				).build();
 			}
-		} catch (PortalException | JsonProcessingException e) {
-			e.printStackTrace();
+		} catch (PortalException | JsonProcessingException exception) {
+			_log.error(exception, exception);
 		}
 
 		return Response.status(
@@ -153,7 +155,7 @@ public class AcmeAccountRegistrationApplication extends Application {
 			).build();
 		}
 		catch (JsonProcessingException jPE) {
-			jPE.printStackTrace();
+			_log.error(jPE,jPE);
 		}
 
 		return Response.status(
@@ -184,5 +186,8 @@ public class AcmeAccountRegistrationApplication extends Application {
 
 	@Context
 	private HttpServletRequest _request;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+			AcmeAccountRegistrationApplication.class);
 
 }
