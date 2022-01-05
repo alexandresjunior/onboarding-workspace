@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	property = "model.class.name=amf.event.monitor.model.Event",
+	property = "model.class.name=com.acme.event.monitor.model.Event",
 	service = AopService.class
 )
 public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {

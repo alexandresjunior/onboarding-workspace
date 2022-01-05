@@ -1,10 +1,11 @@
 Bundle-Name: amf-event-monitor-api
-Bundle-SymbolicName: amf.event.monitor.api
+Bundle-SymbolicName: com.acme.event.monitor.api
 Bundle-Version: 1.0.0
 Export-Package:\
-	amf.event.monitor.exception,\
-	amf.event.monitor.model,\
-	amf.event.monitor.service,\
-	amf.event.monitor.service.persistence
+	com.acme.event.monitor.constants,\
+	com.acme.event.monitor.exception,\
+	com.acme.event.monitor.model,\
+	com.acme.event.monitor.service,\
+	com.acme.event.monitor.service.persistence
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../amf-event-monitor-service/service.xml
