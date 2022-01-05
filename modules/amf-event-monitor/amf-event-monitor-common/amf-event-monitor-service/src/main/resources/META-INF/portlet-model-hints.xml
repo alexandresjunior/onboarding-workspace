@@ -13,16 +13,4 @@
 		<field name="dateTime" type="String" />
 		<field name="ipAddress" type="String" />
 	</model>
-	<model name="amf.event.monitor.model.Event">
-		<field name="eventId" type="long" />
-		<field name="groupId" type="long" />
-		<field name="companyId" type="long" />
-		<field name="userId" type="long" />
-		<field name="userName" type="String" />
-		<field name="createDate" type="Date" />
-		<field name="modifiedDate" type="Date" />
-		<field name="eventType" type="String" />
-		<field name="dateTime" type="String" />
-		<field name="ipAddress" type="String" />
-	</model>
 </model-hints>
