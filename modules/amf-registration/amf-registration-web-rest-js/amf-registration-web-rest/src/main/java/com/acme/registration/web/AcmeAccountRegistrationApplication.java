@@ -76,9 +76,9 @@ public class AcmeAccountRegistrationApplication extends Application {
 	@Path("/account-exists")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response checkAccountExists(String body) throws PortalException {
-		Account account = _jSONFactory.looseDeserialize(body, Account.class);
+		AccountDTO accountDTO = _jSONFactory.looseDeserialize(body, AccountDTO.class);
 
-		account = _accountLocalService.getAccount(account.getAccountId());
+		Account account = _accountLocalService.getAccount(accountDTO.getAccountId());
 
 		boolean accountExists = Boolean.TRUE;
 
@@ -168,6 +168,49 @@ public class AcmeAccountRegistrationApplication extends Application {
 		return Response.status(
 				Response.Status.NO_CONTENT
 		).build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response deleteAccount(
+			@PathParam("id") long accountId){
+
+		try {
+			_accountLocalService.deleteAccount(accountId);
+		} catch (PortalException e) {
+			_log.error(e,e);
+			return Response.status(
+					Response.Status.NOT_FOUND
+			).build();
+		}
+
+		return Response.status(
+				Response.Status.ACCEPTED
+		).build();
+	}
+
+	@PUT
+	@Path("/{id}")
+	public Response updateAccount(
+			@PathParam("id") long accountId, String body){
+
+		AccountDTO accountDTO = _jSONFactory.looseDeserialize(body, AccountDTO.class);
+
+		try {
+			Account account = _accountLocalService.getAccount(accountId);
+
+			_accountLocalService.updateAccount(accountDTO.toAccount(account));
+
+			return Response.status(
+					Response.Status.ACCEPTED
+			).build();
+
+		} catch (PortalException e) {
+			_log.error(e,e);
+			return Response.status(
+					Response.Status.NOT_FOUND
+			).build();
+		}
 	}
 
 	private static final ObjectMapper _OBJECT_MAPPER = new ObjectMapper() {
