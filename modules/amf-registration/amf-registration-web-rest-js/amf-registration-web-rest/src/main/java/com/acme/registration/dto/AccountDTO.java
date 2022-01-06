@@ -35,6 +35,8 @@ public class AccountDTO {
     private String answer;
     private boolean termsOfUse;
 
+    public AccountDTO(){}
+
     private AccountDTO(long accountId, long groupId,
                       long userId, long companyId, String createDate,
                       String modifiedDate, String firstName,
@@ -87,17 +89,30 @@ public class AccountDTO {
 
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
         Date createDate = null;
+        Date modifiedDate = null;
+        Date birthday = null;
 
         try {
             createDate = format.parse(this.createDate);
+            modifiedDate = format.parse(this.modifiedDate);
+            birthday = format.parse(this.birthday);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         account.setCompanyId(this.companyId);
+        account.setAccountId(this.accountId);
         account.setGroupId(this.groupId);
         account.setCreateDate(createDate);
-        account.setMobilePhone(this.modifiedDate);
+        account.setModifiedDate(modifiedDate);
+        account.setUserName(this.userName);
+        account.setPassword(this.password);
+        account.setConfirmPassword(this.confirmPassword);
+        account.setEmailAddress(this.emailAddress);
+        account.setFirstName(this.firstName);
+        account.setLastName(this.lastName);
+        account.setMobilePhone(this.mobilePhone);
+        account.setBirthday(birthday);
         account.setHomePhone(this.homePhone);
         account.setAddress1(this.address1);
         account.setAddress2(this.address2);
