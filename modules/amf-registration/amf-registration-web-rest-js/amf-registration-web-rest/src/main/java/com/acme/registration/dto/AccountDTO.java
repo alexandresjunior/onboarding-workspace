@@ -5,317 +5,329 @@ import com.acme.registration.model.Account;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.util.Date;
 import java.util.Locale;
 
 public class AccountDTO {
-    private long accountId;
-    private long groupId;
-    private long userId;
-    private long companyId;
-    private String createDate;
-    private String modifiedDate;
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
-    private String userName;
-    private String genre;
-    private String birthday;
-    private String password;
-    private String confirmPassword;
-    private String homePhone;
-    private String mobilePhone;
-    private String address1;
-    private String address2;
-    private String city;
-    private String state;
-    private String zipCode;
-    private String securityQuestion;
-    private String answer;
-    private boolean termsOfUse;
 
-    public AccountDTO(){}
+	public static AccountDTO fromAccount(Account account) {
+		return new AccountDTO(
+			account.getAccountId(), account.getGroupId(), account.getUserId(),
+			account.getCompanyId(),
+			account.getCreateDate(
+			).toString(),
+			account.getModifiedDate(
+			).toString(),
+			account.getFirstName(), account.getLastName(),
+			account.getEmailAddress(), account.getUserName(),
+			account.getGenre(),
+			account.getBirthday(
+			).toString(),
+			account.getPassword(), account.getConfirmPassword(),
+			account.getHomePhone(), account.getMobilePhone(),
+			account.getAddress1(), account.getAddress2(), account.getCity(),
+			account.getState(), account.getZipCode(),
+			account.getSecurityQuestion(), account.getAnswer(),
+			account.getTermsOfUse());
+	}
 
-    private AccountDTO(long accountId, long groupId,
-                      long userId, long companyId, String createDate,
-                      String modifiedDate, String firstName,
-                      String lastName, String emailAddress,
-                      String userName, String genre, String birthday,
-                      String password, String confirmPassword,
-                      String homePhone, String mobilePhone,
-                      String address1, String address2, String city,
-                      String state, String zipCode, String securityQuestion,
-                      String answer, boolean termsOfUse) {
+	public AccountDTO() {
+	}
 
-        this.accountId = accountId;
-        this.groupId = groupId;
-        this.userId = userId;
-        this.companyId = companyId;
-        this.createDate = createDate;
-        this.modifiedDate = modifiedDate;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.userName = userName;
-        this.genre = genre;
-        this.birthday = birthday;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.homePhone = homePhone;
-        this.mobilePhone = mobilePhone;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.securityQuestion = securityQuestion;
-        this.answer = answer;
-        this.termsOfUse = termsOfUse;
-    }
+	public long getAccountId() {
+		return accountId;
+	}
 
-    public static AccountDTO fromAccount(Account account){
-        return new AccountDTO(account.getAccountId(), account.getGroupId(),
-                account.getUserId(), account.getCompanyId(), account.getCreateDate().toString(),
-                account.getModifiedDate().toString(), account.getFirstName(), account.getLastName(),
-                account.getEmailAddress(), account.getUserName(), account.getGenre(),
-                account.getBirthday().toString(), account.getPassword(), account.getConfirmPassword(),
-                account.getHomePhone(), account.getMobilePhone(), account.getAddress1(),
-                account.getAddress2(), account.getCity(),account.getState(),account.getZipCode(),
-                account.getSecurityQuestion(), account.getAnswer(),account.getTermsOfUse());
-    }
+	public String getAddress1() {
+		return address1;
+	}
 
-    public Account toAccount(Account account){
+	public String getAddress2() {
+		return address2;
+	}
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-        Date createDate = null;
-        Date modifiedDate = null;
-        Date birthday = null;
+	public String getAnswer() {
+		return answer;
+	}
 
-        try {
-            createDate = format.parse(this.createDate);
-            modifiedDate = format.parse(this.modifiedDate);
-            birthday = format.parse(this.birthday);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+	public String getBirthday() {
+		return birthday;
+	}
 
-        account.setCompanyId(this.companyId);
-        account.setAccountId(this.accountId);
-        account.setGroupId(this.groupId);
-        account.setCreateDate(createDate);
-        account.setModifiedDate(modifiedDate);
-        account.setUserName(this.userName);
-        account.setPassword(this.password);
-        account.setConfirmPassword(this.confirmPassword);
-        account.setEmailAddress(this.emailAddress);
-        account.setFirstName(this.firstName);
-        account.setLastName(this.lastName);
-        account.setMobilePhone(this.mobilePhone);
-        account.setBirthday(birthday);
-        account.setHomePhone(this.homePhone);
-        account.setAddress1(this.address1);
-        account.setAddress2(this.address2);
-        account.setGenre(this.genre);
-        account.setCity(this.city);
-        account.setState(this.state);
-        account.setZipCode(this.zipCode);
-        account.setSecurityQuestion(this.securityQuestion);
-        account.setAnswer(this.answer);
-        account.setTermsOfUse(this.termsOfUse);
+	public String getCity() {
+		return city;
+	}
 
-        return account;
-    }
+	public long getCompanyId() {
+		return companyId;
+	}
 
-    public long getAccountId() {
-        return accountId;
-    }
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
 
-    public void setAccountId(long accountId) {
-        this.accountId = accountId;
-    }
+	public String getCreateDate() {
+		return createDate;
+	}
 
-    public long getGroupId() {
-        return groupId;
-    }
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public long getUserId() {
-        return userId;
-    }
+	public String getGenre() {
+		return genre;
+	}
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+	public long getGroupId() {
+		return groupId;
+	}
 
-    public long getCompanyId() {
-        return companyId;
-    }
+	public String getHomePhone() {
+		return homePhone;
+	}
 
-    public void setCompanyId(long companyId) {
-        this.companyId = companyId;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getCreateDate() {
-        return createDate;
-    }
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
+	public String getModifiedDate() {
+		return modifiedDate;
+	}
 
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getState() {
+		return state;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public long getUserId() {
+		return userId;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getZipCode() {
+		return zipCode;
+	}
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
+	public boolean isTermsOfUse() {
+		return termsOfUse;
+	}
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+	public void setAccountId(long accountId) {
+		this.accountId = accountId;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
 
-    public String getGenre() {
-        return genre;
-    }
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 
-    public String getBirthday() {
-        return birthday;
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getHomePhone() {
-        return homePhone;
-    }
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
-    }
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
 
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
 
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getAddress1() {
-        return address1;
-    }
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
+	public void setModifiedDate(String modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
 
-    public String getAddress2() {
-        return address2;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	public void setTermsOfUse(boolean termsOfUse) {
+		this.termsOfUse = termsOfUse;
+	}
 
-    public String getState() {
-        return state;
-    }
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
-    public void setState(String state) {
-        this.state = state;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getZipCode() {
-        return zipCode;
-    }
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+	public Account toAccount(Account account) {
+		DateFormat format = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+		Date createDate = null;
+		Date modifiedDate = null;
+		Date birthday = null;
 
-    public String getSecurityQuestion() {
-        return securityQuestion;
-    }
+		try {
+			createDate = format.parse(this.createDate);
+			modifiedDate = format.parse(this.modifiedDate);
+			birthday = format.parse(this.birthday);
+		}
+		catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-    public void setSecurityQuestion(String securityQuestion) {
-        this.securityQuestion = securityQuestion;
-    }
+		account.setCompanyId(this.companyId);
+		account.setAccountId(this.accountId);
+		account.setGroupId(this.groupId);
+		account.setCreateDate(createDate);
+		account.setModifiedDate(modifiedDate);
+		account.setUserName(this.userName);
+		account.setPassword(this.password);
+		account.setConfirmPassword(this.confirmPassword);
+		account.setEmailAddress(this.emailAddress);
+		account.setFirstName(this.firstName);
+		account.setLastName(this.lastName);
+		account.setMobilePhone(this.mobilePhone);
+		account.setBirthday(birthday);
+		account.setHomePhone(this.homePhone);
+		account.setAddress1(this.address1);
+		account.setAddress2(this.address2);
+		account.setGenre(this.genre);
+		account.setCity(this.city);
+		account.setState(this.state);
+		account.setZipCode(this.zipCode);
+		account.setSecurityQuestion(this.securityQuestion);
+		account.setAnswer(this.answer);
+		account.setTermsOfUse(this.termsOfUse);
 
-    public String getAnswer() {
-        return answer;
-    }
+		return account;
+	}
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
+	private AccountDTO(
+		long accountId, long groupId, long userId, long companyId,
+		String createDate, String modifiedDate, String firstName,
+		String lastName, String emailAddress, String userName, String genre,
+		String birthday, String password, String confirmPassword,
+		String homePhone, String mobilePhone, String address1, String address2,
+		String city, String state, String zipCode, String securityQuestion,
+		String answer, boolean termsOfUse) {
 
-    public boolean isTermsOfUse() {
-        return termsOfUse;
-    }
+		this.accountId = accountId;
+		this.groupId = groupId;
+		this.userId = userId;
+		this.companyId = companyId;
+		this.createDate = createDate;
+		this.modifiedDate = modifiedDate;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
+		this.userName = userName;
+		this.genre = genre;
+		this.birthday = birthday;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.homePhone = homePhone;
+		this.mobilePhone = mobilePhone;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.securityQuestion = securityQuestion;
+		this.answer = answer;
+		this.termsOfUse = termsOfUse;
+	}
 
-    public void setTermsOfUse(boolean termsOfUse) {
-        this.termsOfUse = termsOfUse;
-    }
+	private long accountId;
+	private String address1;
+	private String address2;
+	private String answer;
+	private String birthday;
+	private String city;
+	private long companyId;
+	private String confirmPassword;
+	private String createDate;
+	private String emailAddress;
+	private String firstName;
+	private String genre;
+	private long groupId;
+	private String homePhone;
+	private String lastName;
+	private String mobilePhone;
+	private String modifiedDate;
+	private String password;
+	private String securityQuestion;
+	private String state;
+	private boolean termsOfUse;
+	private long userId;
+	private String userName;
+	private String zipCode;
+
 }
