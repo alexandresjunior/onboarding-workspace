@@ -7,6 +7,10 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.acme.registration.constants.RegistrationPortletKeys" %>
+<%@ page import="javax.portlet.PortletSession" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />

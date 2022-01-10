@@ -1,20 +1,6 @@
-<%@ page import="com.acme.registration.constants.RegistrationPortletKeys" %>
-<%@ page import="javax.portlet.PortletSession" %>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@ include file="init.jsp" %>
+<%@ include file="/init.jsp" %>
+<%@include file="error.jsp"%>
 
-<liferay-ui:error key="invalidFirstName" message="error.field-first-name" focusField="firstName"/>
-<liferay-ui:error key="invalidLastName" message="error.field-last-name"/>
-<liferay-ui:error key="invalidEmail" message="error.field-email"/>
-<liferay-ui:error key="invalidUserNameMap" message="error.field-user-name"/>
-<liferay-ui:error key="duplicatedUserName" message="error.field-duplicate-username"/>
-<liferay-ui:error key="invalidAge" message="error.field-birth-date"/>
-<liferay-ui:error key="invalidPassword" message="error.field-password"/>
-<liferay-ui:error key="confirmationPasswordMismatch" message="error.field-password-confirmation"/>
-<liferay-ui:error key="addressInvalid" message="error.field-address"/>
-<liferay-ui:error key="cityInvalid" message="error.field-address"/>
-<liferay-ui:error key="stateInvalid" message="error.field-address"/>
-<liferay-ui:error key="zipCodeInvalid" message="error.field-zipcode"/>
 
 <portlet:actionURL name="<%= RegistrationPortletKeys.REGISTRATION_MVC_COMMAND_NAME %>" var="registerAccountURL">
 	<portlet:param name="redirect" value="/home"/>
