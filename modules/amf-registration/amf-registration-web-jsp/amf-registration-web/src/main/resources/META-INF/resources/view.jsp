@@ -137,7 +137,7 @@
 								</aui:input>
 							</aui:col>
 							<aui:col span="4">
-								<aui:input name="state" type="text" required="true"/>
+								<aui:select label="State:" name="state" required="false" onclick="choice(event)" />
 							</aui:col>
 							<aui:col span="4">
 								<aui:input name="zipCode" type="text" label="Zip Code" required="true">
@@ -185,13 +185,61 @@
 								   type="checkbox"
 								   required="true"/>
 					</aui:fieldset>
+					<aui:fieldset label="Read Terms of Use">
+							<aui:button onclick="modal()" value="Read Terms of Use" />
+					</aui:fieldset>
 				</aui:fieldset-group>
+
+				<portlet:renderURL var="homeURL">
+					<portlet:param name="mvcPath" value="/home.jsp"/>
+				</portlet:renderURL>
 
 				<aui:button-row>
 					<aui:button cssClass="btn-lg" name="saveButton" primary="true" type="submit" value="Register" />
-					<aui:button cssClass="btn-lg" href="#" name="cancelButton" type="cancel" value="Cancel"/>
+					<aui:button cssClass="btn-lg" href="#" name="cancelButton" type="cancel" value="Cancel" onClick="<%=homeURL.toString()%>"/>
 				</aui:button-row>
 			</aui:form>
 		</c:otherwise>
 	</c:choose>
+
+	<%@ include file="/META-INF/resources/touContent.jsp" %>
+	<aui:script>
+		var touContent = document.getElementById("tou-content").innerHTML;
+		function modal () {
+		Liferay.Util.openModal(
+		{
+		title:"Terms of Use", bodyHTML: touContent
+		}); }
+	</aui:script>
+
+	<!--State script-->
+	<aui:script use="liferay-dynamic-select">
+		new Liferay.DynamicSelect(
+		[
+		{
+		select: '<portlet:namespace />country',
+		selectData: Liferay.Address.getCountries,
+		selectDesc: 'a3',
+		selectId: 'countryId',
+		selectVal: '21531'
+		},
+		{
+		select: '<portlet:namespace />state',
+		selectData: Liferay.Address.getRegions,
+		selectDesc: 'name',
+		selectId: 'name',
+		selectVal: '&lt; regionId &gt;'
+		}
+		]
+		);
+	</aui:script>
+
+	<!--State Change script-->
+	<aui:script>
+		const choice = (event) => {
+		if (event.target.value === "0") {
+		alert("Please select some state!");
+		}
+		}
+	</aui:script>
 </div>
