@@ -243,9 +243,9 @@ public class AccountDTO {
 			e.printStackTrace();
 		}
 
-		account.setCompanyId(this.companyId);
-		account.setAccountId(this.accountId);
-		account.setGroupId(this.groupId);
+//		account.setCompanyId(this.companyId);
+//		account.setAccountId(this.accountId);
+//		account.setGroupId(this.groupId);
 		account.setCreateDate(createDate);
 		account.setModifiedDate(modifiedDate);
 		account.setUserName(this.userName);
